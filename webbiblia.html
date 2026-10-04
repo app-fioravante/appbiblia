@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Estudios Bíblicos en Cadena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#d9ecfa;--bg2:#c4e0f6;--tx:#10306a;--mu:#3b5f96;--ac:#2f6bd1;--ac2:#6db8ee;--gl:#1d4ea3;--on:#fff;--ao:.55;--card:rgba(255,255,255,.66);--bd:#d4a537;--gd:#b8860b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--tx);font:400 17px/1.65 Manrope,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.05;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ac2);outline-offset:3px}
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.aurora i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);opacity:var(--ao);animation:float 18s ease-in-out infinite alternate}
+.aurora i:nth-child(1){background:#8fc8f5;top:-20%;left:-10%}
+.aurora i:nth-child(2){background:#ffffff;bottom:-25%;right:-15%;animation-delay:-6s}
+.aurora i:nth-child(3){background:var(--gl);top:35%;left:45%;width:34vmax;height:34vmax;animation-delay:-11s;background:#f3d99b}
+.rays{position:fixed;top:-60vmax;left:50%;width:120vmax;height:120vmax;margin-left:-60vmax;z-index:-1;background:repeating-conic-gradient(rgba(212,165,55,.2) 0 5deg,transparent 5deg 15deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 62%);mask:radial-gradient(circle,#000 0,transparent 62%);animation:spin 160s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{to{filter:drop-shadow(0 8px 30px rgba(212,165,55,.95));transform:translateY(-4px)}}
+@keyframes float{to{transform:translate(8vw,6vh) scale(1.15)}}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 60%,transparent);border-bottom:1.5px solid var(--bd)}
+nav b{font-family:Fraunces,serif;font-size:1.1rem}
+nav div{display:flex;gap:6px;overflow-x:auto}
+nav a{padding:6px 14px;border-radius:99px;font-size:.9rem;color:var(--mu);transition:.25s}
+nav a:hover{background:var(--card);color:var(--tx)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));z-index:30}
+section{padding:110px 4vw;width:100%;max-width:none;margin:0}
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:130px}
+.hero h1{font-size:clamp(2.8rem,10vw,9rem);font-weight:900;max-width:14ch}
+.hero h1 span{display:block;background:linear-gradient(100deg,var(--gl),var(--ac),var(--gl));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
+@keyframes shine{to{background-position:300% 0}}
+.hero p{margin:28px 0 36px;max-width:60ch;color:var(--mu);font-size:1.15rem}
+.hero .in{opacity:0;transform:translateY(24px);animation:up .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .in:nth-child(2){animation-delay:.15s}.hero .in:nth-child(3){animation-delay:.3s}.hero .in:nth-child(4){animation-delay:.45s}
+@keyframes up{to{opacity:1;transform:none}}
+.btn{border:1.5px solid var(--bd);display:inline-block;padding:14px 28px;border-radius:99px;font-weight:700;background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--on);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px);box-shadow:0 12px 40px -8px var(--ac)}
+.btn.g{background:var(--card);color:var(--tx);border:1.5px solid var(--bd);margin-left:10px}
+.verse{margin-top:60px;font-family:Fraunces,serif;font-style:italic;color:var(--gl);font-size:1.05rem}
+h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:12px}
+.lead{color:var(--mu);max-width:56ch;margin-bottom:40px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.tabs button{font:inherit;font-weight:500;padding:10px 20px;border-radius:99px;border:1.5px solid var(--bd);background:var(--card);color:var(--mu);cursor:pointer;transition:.25s}
+.tabs button[aria-pressed=true]{background:var(--ac);color:var(--on);border-color:var(--gd)}
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:7px;top:0;bottom:0;width:2px;background:var(--bd)}
+.tl .fill{position:absolute;left:7px;top:0;width:2px;height:0;background:linear-gradient(var(--ac),var(--ac2));transition:height .15s}
+.ev{position:relative;padding:14px 20px;margin-bottom:12px;background:var(--card);border:1.5px solid var(--bd);border-radius:16px;transition:transform .3s,border-color .3s;backdrop-filter:blur(8px)}
+.ev:hover{transform:translateX(6px);border-color:var(--gd)}
+.ev::before{content:"";position:absolute;left:-34px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--bd);transition:.3s}
+.ev:hover::before{background:var(--ac);border-color:var(--gd);box-shadow:0 0 16px rgba(212,165,55,.7)}
+.ev b{font-family:Fraunces,serif;color:var(--gl);font-size:1.15rem;margin-right:10px}
+.ev.hide{display:none}
+.note{font-size:.88rem;color:var(--mu);margin-top:20px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:24px}
+.steps button{font:inherit;font-family:Fraunces,serif;font-weight:700;padding:18px 8px;border-radius:14px;border:1.5px solid var(--bd);background:var(--card);color:var(--mu);cursor:pointer;transition:.3s}
+.steps button[aria-selected=true]{background:linear-gradient(135deg,var(--ac),var(--ac2));color:var(--on);transform:translateY(-4px);box-shadow:0 14px 40px -12px var(--ac)}
+.panel{padding:30px;border-radius:22px;background:var(--card);border:1.5px solid var(--bd);min-height:200px;animation:up .5s both;backdrop-filter:blur(10px)}
+.panel h3{font-size:1.8rem;margin-bottom:14px}
+.panel li{margin:0 0 8px 20px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.card{position:relative;padding:22px;border-radius:20px;background:var(--card);border:1.5px solid var(--bd);display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:170px;overflow:hidden;transition:transform .35s,border-color .35s;backdrop-filter:blur(8px)}
+.card::after{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--x,50%) var(--y,0),color-mix(in srgb,var(--ac) 30%,transparent),transparent 70%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{transform:translateY(-6px);border-color:var(--gd)}.card:hover::after{opacity:1}
+.card h3{font-size:1.2rem;line-height:1.2}
+.card small{color:var(--mu)}
+.card span{font-weight:700;color:var(--ac);font-size:.9rem}
+.sub{margin:44px 0 16px;font-size:1.5rem}
+footer{text-align:center;padding:60px 5vw 80px;color:var(--mu);border-top:1.5px solid var(--bd);font-size:.9rem}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.rv.on{opacity:1;transform:none}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+@media(max-width:700px){.steps{grid-template-columns:1fr 1fr}nav b{display:none}.btn.g{margin:12px 0 0}section{padding:80px 5vw}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.hero .in{opacity:1;transform:none}}
+.eras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.era{font:inherit;color:var(--tx);text-align:left;cursor:pointer;padding:36px 30px;min-height:260px;border-radius:26px;background:var(--card);border:2px solid var(--bd);display:flex;flex-direction:column;justify-content:space-between;gap:24px;backdrop-filter:blur(10px);transition:transform .35s,box-shadow .35s,border-color .35s}
+.era:hover{transform:translateY(-8px);border-color:var(--gd);box-shadow:0 24px 50px -18px rgba(184,134,11,.55)}
+.era h3{font-size:clamp(1.8rem,3.2vw,2.8rem);color:var(--gl)}
+.era p{color:var(--mu);margin-top:10px}
+.era span{font-weight:700;color:var(--ac)}
+.ov{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(16,48,106,.45);backdrop-filter:blur(8px);animation:fade .3s}
+.ov[hidden]{display:none}
+@keyframes fade{from{opacity:0}}
+.md{position:relative;width:min(1000px,100%);max-height:88vh;overflow-y:auto;overflow-x:hidden;padding:36px;border-radius:26px;background:var(--bg);border:2px solid var(--bd);box-shadow:0 30px 80px -20px rgba(16,48,106,.6);animation:pop .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.md h3{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--gl);padding-right:50px}
+.md .lead{margin:6px 0 0}
+.x{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);font-size:1.6rem;line-height:1;cursor:pointer;transition:.25s}
+.x:hover{background:var(--ac);color:var(--on);transform:rotate(90deg)}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:22px}
+.mg .ev{margin:0;overflow-wrap:anywhere}
+.mg .ev::before{display:none}
+.mg .ev:hover{transform:translateY(-3px)}
+.mg .ev b{display:block;margin:0 0 2px}
+@media(max-width:800px){.eras{grid-template-columns:1fr}.era{min-height:180px}.md{padding:26px 20px}}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div class="rays"></div>
+<div class="aurora"><i></i><i></i><i></i></div>
+<nav><b>Estudios Bíblicos</b><div>
+<a href="#cronologia">Cronología</a><a href="#escatologia">Escatología</a><a href="#biblia">Biblia</a><a href="#libros">Libros</a><a href="#himnos">Himnos</a></div></nav>
+
+<section class="hero">
+<h1 class="in">Escudriñando las <span>Escrituras</span></h1>
+<p class="in">Estudios bíblicos en cadena: cronología, escatología, biblias y libros cristianos para estudiar la Palabra y conocer la verdad.</p>
+<div class="in"><a class="btn" href="#cronologia">Comenzar el estudio</a><a class="btn g" href="#biblia">Ver Biblias</a></div>
+<p class="verse in">«Escudriñad las Escrituras» — Juan 5:39</p>
+</section>
+
+<section id="cronologia">
+<h2 class="rv">Cronología de la Biblia</h2>
+<p class="lead rv">Una línea de tiempo desde la Caída hasta la Iglesia primitiva. Los datos son aproximados, con fines ilustrativos.</p>
+<div class="eras" id="eras"></div>
+<h3 class="sub">Historia y cronología (PDF)</h3>
+<div class="grid" id="g-cron"></div>
+</section>
+
+<section id="escatologia">
+<h2 class="rv">Escatología</h2>
+<p class="lead rv">Los sucesos de los últimos días, en cadena. Elige una etapa.</p>
+<div class="steps" id="steps" role="tablist"></div>
+<div class="panel" id="panel" role="tabpanel"></div>
+<h3 class="sub">Libros de estudio</h3>
+<div class="grid" id="g-esc"></div>
+</section>
+
+<section id="biblia">
+<h2 class="rv">Santa Biblia</h2>
+<p class="lead rv">Las versiones y biblias de estudio más importantes para escudriñar la Palabra de Dios.</p>
+<div class="grid" id="g-bib"></div>
+</section>
+
+<section id="libros">
+<h2 class="rv">Libros cristianos</h2>
+<p class="lead rv">Biblioteca para comprender mejor los temas bíblicos.</p>
+<div class="grid" id="g-lib"></div>
+</section>
+
+<section id="himnos">
+<h2 class="rv">Himnos cristianos</h2>
+<p class="lead rv">Cancionero evangélico de alabanza a Dios.</p>
+<div class="grid" id="g-him"></div>
+</section>
+
+<div class="ov" id="ov" hidden><div class="md" role="dialog" aria-modal="true" aria-labelledby="mt"><button class="x" id="mx" aria-label="Cerrar">×</button><h3 id="mt"></h3><p id="ms" class="lead"></p><div class="mg" id="mb"></div><p class="note">Fechas aproximadas, a modo ilustrativo.</p></div></div>
+<footer>© 2023 Creado por Rómulo Fioravante · Posadas, Misiones, Argentina<br>
+<a href="https://rfioravante.wixsite.com/estudiosbiblicos" style="color:var(--ac)">Sitio original</a></footer>
+
+<script>
+const U='https://b1a4949f-0463-44d4-bdb8-8a9ce493b981.filesusr.com/ugd/3d942c_';
+const $=s=>document.querySelector(s);
+const TL=[
+['at','Origen','Creación del Universo conocido'],['at','4140 a.C.','Caída del Hombre de Edén'],['at','2590 a.C.','Diluvio Universal – Arca de Noé'],
+['at','2008 a.C.','Nacimiento de Abram (Abraham)'],['at','1973 a.C.','Nacimiento de Jacob (Israel)'],['at','1840 a.C.','Israel entra en Egipto'],
+['at','1640 a.C.','Nacimiento de Moisés'],['at','1560 a.C.','Éxodo de Israel hacia Canaán'],['at','1515 a.C.','Conquista de la Tierra Prometida'],
+['at','1110 a.C.','Reino de Saúl'],['at','1065 a.C.','Reino de David'],['at','1030 a.C.','Reino de Salomón'],['at','990 a.C.','Reino dividido: Israel y Judá'],
+['at','730 a.C.','Caída de Samaria (Israel)'],['at','595 a.C.','Caída de Jerusalén (Judá)'],['at','539 a.C.','Fin de la cautividad en Babilonia'],
+['at','515 a.C.','Segundo Templo de Jerusalén'],['at','458 a.C.','Esdras restaura el culto en el Templo'],
+['it','350 a.C.','Judea: Estado teocrático con moneda autónoma'],['it','331 a.C.','Grecia conquista Palestina'],['it','167 a.C.','Rebelión de los Macabeos'],
+['it','164 a.C.','Purificación del Templo'],['it','64 a.C.','Roma anexa Siria como provincia'],['it','39 a.C.','Herodes, nombrado Rey de Judea'],
+['it','20 a.C.','Herodes reconstruye el Templo'],['nt','7 a.C.','Nacimiento de Juan el Bautista'],['nt','5-4 a.C.','Nacimiento de Jesús en Belén'],
+['nt','28 d.C.','Bautismo de Jesús e inicio de su ministerio'],['nt','32 d.C.','Crucifixión y resurrección de Jesús'],['nt','33 d.C.','Pentecostés: inicio de la Iglesia'],
+['nt','37 d.C.','Conversión de Saulo de Tarso (Pablo)'],['nt','70 d.C.','Roma destruye Jerusalén'],['nt','95 d.C.','Juan, preso en la isla de Patmos'],
+['nt','150 d.C.','Persecución de los cristianos por Roma']];
+const EI={at:['Antiguo Testamento','De la caída del hombre al regreso del exilio','4140 – 458 a.C.'],it:['Inter-Testamentos','Del dominio griego al Imperio Romano','350 – 20 a.C.'],nt:['Nuevo Testamento','De Jesús a la Iglesia primitiva','7 a.C. – 150 d.C.']};
+$('#eras').innerHTML=Object.entries(EI).map(([k,v])=>`<button class="era rv" data-k="${k}"><div><h3>${v[0]}</h3><p>${v[1]}</p></div><span>${v[2]} · Ver cronología</span></button>`).join('');
+const ov=$('#ov');let last;
+function openM(k){last=document.activeElement;$('#mt').textContent=EI[k][0];$('#ms').textContent=EI[k][1];
+ $('#mb').innerHTML=TL.filter(e=>e[0]==k).map(e=>`<div class="ev"><b>${e[1]}</b>${e[2]}</div>`).join('');
+ ov.hidden=false;document.body.style.overflow='hidden';$('.md').scrollTop=0;$('#mx').focus()}
+function closeM(){ov.hidden=true;document.body.style.overflow='';last&&last.focus()}
+$('#eras').onclick=e=>{const b=e.target.closest('.era');if(b)openM(b.dataset.k)};
+$('#mx').onclick=closeM;ov.onclick=e=>{if(e.target===ov)closeM()};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!ov.hidden)closeM()});
+const ES=[
+['Desde la Crucifixión',['Persecución a los cristianos','Guerras, terremotos, pestes y hambrunas','Dictadores y anticristos']],
+['Época presente',['Ideales apóstatas','Avances de la ciencia y la tecnología','Internet global y comunicaciones digitales','Movimientos sociales e ideológicos','Inteligencia artificial avanzada']],
+['Gran Tribulación',['Aparición del Anticristo','Único gobierno mundial y religión mundial','Marca de la Bestia para la economía mundial','Control total de la población','Rapto de la Iglesia antes de la tribulación']],
+['Milenio',['Segunda venida visible de Cristo y la Iglesia desde el cielo','Satanás atado por mil años','Milenio de Cristo: gobierno de los santos']],
+['Juicio Final',['Satanás es desatado al final de los mil años','Juicio de las naciones','Satanás y sus seguidores, al lago de fuego','Nuevos Cielos y Nueva Tierra: eternidad con Dios y Cristo']]];
+$('#steps').innerHTML=ES.map((s,i)=>`<button role="tab" data-i="${i}" aria-selected="${i==0}">${s[0]}</button>`).join('');
+function show(i){const p=$('#panel');p.style.animation='none';p.offsetWidth;p.style.animation='';p.innerHTML=`<h3>${ES[i][0]}</h3><ul>${ES[i][1].map(x=>`<li>${x}</li>`).join('')}</ul>`;
+ document.querySelectorAll('#steps button').forEach(b=>b.setAttribute('aria-selected',b.dataset.i==i))}
+$('#steps').onclick=e=>{if(e.target.dataset.i)show(e.target.dataset.i)};show(0);
+const D={
+cron:[['Historia del Antiguo Testamento','Historia-Bíblica','b34849a96f0b4504a72d176343c91ee7'],['Historia del Nuevo Testamento','Historia-Bíblica','6596bcdc914a4f48a0781c50cfbf6911'],['Panorama de la Biblia ilustrado','Alfred Thompson Eade','91e70768b3ef4884881632057ce1b6fb'],['Períodos bíblicos','Rafael M. Riggs','6a9ab75e78e94cb4958832a84c5afb8a'],['Cronología bíblica e histórica','Tablas cronológicas','97611c7dcaf44d118e54627324f75996']],
+esc:[['Nuevo Orden Mundial','Shalom Jesús · Sergio Bobrow','416c21398fa14952860ad3049acee254'],['El Anticristo que ha de venir','Shalom Jesús · Sergio Bobrow','1c82060efd034552b8635254a6e20924'],['El Anticristo ya viene','Shalom Jesús · Sergio Bobrow','f382d93b398247cda23353b6c2b854d6'],['Apocalipsis','Charles C. Ryrie','225a976114a247348f64561cd4f74483'],['Daniel y Apocalipsis','José Baritto','2261f3789ac94991a155cc3e0ab59cd5'],['¿Pasará la Iglesia por la Gran Tribulación?','Yiye Ávila','9c614f007f7e4add9ff244bc44699c7c'],['Se desata la Bestia','Perry Stone','13f2f59bc68747ab9afe99b56093ef04'],['La Segunda Venida de Cristo','Cuaderno de estudio escatológico','a90fdb3e6a25449c886c0b0a5cac33de']],
+bib:[['Reina-Valera 1960','Biblia completa','c65d6e3b0ef2404aabed70d412870bcd'],['Biblia Hebraica','De estudio','205a8c76392542eab18b75acee157d9b'],['Biblia ilustrada','La Palabra de Dios, completa','d69fad09dc994b40a336dd7415789706'],['Nácar-Colunga 1944','Versión católica clásica','48d6c6ee88cb4e4abc12f6d1d770f293'],['Biblia Thompson','De estudio y referencia','4112999133304150ab4da6f370b85fa3'],['Biblia Scofield','De estudio · Pentateuco','30d88ae2fe7e4827bf5f173fc08d3180'],['Biblia Swindoll','De estudio · Charles Swindoll','5921e94f7f444ae3bf80d4a5a03c14b1'],['Biblia Vida Plena','De estudio','28f90e0f2cde4a928e9d2c48305cf82a']],
+lib:[['Interlineal hebreo-español, Tomo 1','Pentateuco','c8ae7927ceea4a6186cb1aae354038ba'],['Interlineal, Tomo 2','Históricos','547d4c8d05a74864bdcae29fd49db1b0'],['Interlineal, Tomo 3','Poéticos','c9e5cffd98ca47d9b3a53ffe9b1c6ffe'],['Interlineal, Tomo 4','Proféticos','48ff944551684d888a58425be402b459'],['Atlas Bíblico','Geografía de la Biblia','f2b6c9b780b84bafa15c113ba69988f3'],['Usos y costumbres de la Biblia','Manual','0cb985a218b34c7c8aa025829e0ac3ab'],['El progreso del peregrino','Edición ilustrada','0f30a14e898f4609ba69fbe016dab6d6'],['Bosquejos de la Historia Sagrada','Estudio','aa3f882852fd48fbb076f7eb6ccae9f1']],
+him:[['Himnario de Gloria','Himnos de alabanza','504a1eebb59644eb8366b824d7f9ad0f'],['Himnario de Sion','Himnos de alabanza','cdaf28d3dccc4927b3efa5d2de5a4b25']]};
+const map={cron:'g-cron',esc:'g-esc',bib:'g-bib',lib:'g-lib',him:'g-him'};
+for(const k in D)$('#'+map[k]).innerHTML=D[k].map(d=>`<a class="card rv" href="${U+d[2]}.pdf" target="_blank" rel="noopener"><div><h3>${d[0]}</h3><small>${d[1]}</small></div><span>Abrir PDF ↗</span></a>`).join('')+(k=='him'?`<a class="card rv" href="https://rfioravante.wixsite.com/estudiosbiblicos/himnoscristianos" target="_blank" rel="noopener"><div><h3>Himnario MIDI</h3><small>Descarga en archivo ZIP, en el sitio original</small></div><span>Ir al sitio ↗</span></a>`:'');
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--x',e.clientX-r.left+'px');c.style.setProperty('--y',e.clientY-r.top+'px')}));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function prog(){const d=document.documentElement;$('#bar').style.width=(scrollY/(d.scrollHeight-innerHeight)*100)+'%'}
+addEventListener('scroll',prog,{passive:true});prog();
+</script>
+</body>
+</html>
